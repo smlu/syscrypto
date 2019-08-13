@@ -1,5 +1,6 @@
 #pragma once
 #include "win_utils.h"
+#include "../utils.h"
 #include "../../bytes.h"
 #include "../../bytes_span.h"
 
@@ -25,17 +26,16 @@ namespace syscrypto {
         );
 
         if (!success) {
-            throw error(GetLastError(), "protect_data failed");
+            throw error(GetLastError(), "encryption failed");
         }
 
-        const auto edit = reinterpret_cast<std::byte*>(edata.pbData);
+        sc_scope_exit([&edata](){
+            LocalFree(edata.pbData);
+        });
+
+        const auto edit  = reinterpret_cast<std::byte*>(edata.pbData);
         const auto edeit = edit + edata.cbData;
-
-        // TODO: handle construction exception
-        pd_bytes res(edit, edeit);
-
-        LocalFree(edata.pbData);
-        return res;
+        return pd_bytes(edit, edeit);
     }
 
 
@@ -55,17 +55,17 @@ namespace syscrypto {
         );
 
         if (!success) {
-            throw error(GetLastError(), "unprotect_data failed");
+            throw error(GetLastError(), "decryption failed");
         }
 
-        const auto ddit = reinterpret_cast<std::byte*>(ddata.pbData);
+        const auto ddit  = reinterpret_cast<std::byte*>(ddata.pbData);
         const auto ddeit = ddit + ddata.cbData;
 
-        // TODO: handle construction exception and zeromem od ddata
-        sec_bytes res(ddit, ddeit);
+        sc_scope_exit([&](){
+            zeromem(pd_bytes_span{ ddit, ddeit });
+            LocalFree(ddata.pbData);
+        });
 
-        zeromem(pd_bytes_span{ ddit, ddeit });
-        LocalFree(ddata.pbData);
-        return res;
+        return sec_bytes(ddit, ddeit);
     }
 }
