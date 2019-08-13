@@ -20,27 +20,27 @@ namespace syscrypto {
         std::system_error(ec,  std::system_category(), what)
     {}
 
-    pd_bytes pde::protect_data(bytes_view data, encyption_scope s)
+    pd_bytes pde::encrypt(bytes_view data, encyption_scope s)
     {
         using namespace std::string_view_literals;
-        return protect_data(data, bytes_view(), ""sv, s);
+        return encrypt(data, bytes_view(), ""sv, s);
     }
 
-    pd_bytes pde::protect_data(bytes_view data, std::string_view description, encyption_scope s)
+    pd_bytes pde::encrypt(bytes_view data, std::string_view description, encyption_scope s)
     {
         using namespace std::string_view_literals;
-        return protect_data(data, bytes_view(), description, s);
+        return encrypt(data, bytes_view(), description, s);
     }
 
-    pd_bytes pde::protect_data(bytes_view data, bytes_view entropy_key, encyption_scope s)
+    pd_bytes pde::encrypt(bytes_view data, bytes_view entropy_key, encyption_scope s)
     {
         using namespace std::string_view_literals;
-        return protect_data(data, entropy_key, ""sv, s);
+        return encrypt(data, entropy_key, ""sv, s);
     }
 
-    sec_bytes pde::unprotect_data(pd_bytes_view encrypted_data)
+    sec_bytes pde::decrypt(pd_bytes_view encrypted_data)
     {
-        return unprotect_data(encrypted_data, bytes_view());
+        return decrypt(encrypted_data, bytes_view());
     }
 
 }

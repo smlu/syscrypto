@@ -7,7 +7,7 @@
 
 namespace syscrypto {
 
-    pd_bytes pde::protect_data(bytes_view data, bytes_view entropy_key, std::string_view description, encyption_scope s)
+    pd_bytes pde::encrypt(bytes_view data, bytes_view entropy_key, std::string_view description, encyption_scope s)
     {
         using namespace windows;
 
@@ -39,7 +39,7 @@ namespace syscrypto {
     }
 
 
-    sec_bytes pde::unprotect_data(pd_bytes_view encrypted_data, bytes_view entropy_key)
+    sec_bytes pde::decrypt(pd_bytes_view encrypted_data, bytes_view entropy_key)
     {
         using namespace windows;
 

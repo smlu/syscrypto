@@ -17,8 +17,8 @@
 int main()
 {
     syscrypto::sec_bytes sec_bytes{ std::byte(0x22), std::byte(0x41), std::byte(0x41) };
-    auto pd_cdata = syscrypto::pde::protect_data(sec_bytes);
-    auto sec_ddata = syscrypto::pde::unprotect_data(pd_cdata);
+    auto pd_cdata = syscrypto::pde::encrypt(sec_bytes);
+    auto sec_ddata = syscrypto::pde::decrypt(pd_cdata);
     assert(sec_ddata == sec_bytes);
 
     /*std::array bytes2{ std::byte(0x22), std::byte(0x41), std::byte(0x42) };

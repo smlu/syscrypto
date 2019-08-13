@@ -35,7 +35,7 @@ namespace syscrypto {
          * @param Optional encryption scope.
          * @return Encrypted data.
          */
-        static pd_bytes protect_data(bytes_view data, encyption_scope s = local_user);
+        static pd_bytes encrypt(bytes_view data, encyption_scope s = local_user);
 
         /**
          * Encrypts data.
@@ -47,7 +47,7 @@ namespace syscrypto {
          * @param Optional encryption scope.
          * @return Encrypted data.
          */
-        static pd_bytes protect_data(bytes_view data, std::string_view description, encyption_scope s = local_user);
+        static pd_bytes encrypt(bytes_view data, std::string_view description, encyption_scope s = local_user);
 
         /**
          * Encrypts data using additional entropy key.
@@ -58,7 +58,7 @@ namespace syscrypto {
          * @param Optional encryption scope.
          * @return Encrypted data.
          */
-        static pd_bytes protect_data(bytes_view data, bytes_view entropy_key, encyption_scope s = local_user);
+        static pd_bytes encrypt(bytes_view data, bytes_view entropy_key, encyption_scope s = local_user);
 
         /**
          * Encrypts data using additional entropy key.
@@ -71,11 +71,11 @@ namespace syscrypto {
          * @param Optional encryption scope.
          * @return Encrypted data.
          */
-        static pd_bytes protect_data(bytes_view data, bytes_view entropy_key, std::string_view description, encyption_scope s = local_user);
+        static pd_bytes encrypt(bytes_view data, bytes_view entropy_key, std::string_view description, encyption_scope s = local_user);
 
 
-        static sec_bytes unprotect_data(pd_bytes_view encrypted_data);
-        static sec_bytes unprotect_data(pd_bytes_view encrypted_data, bytes_view entropy_key);
+        static sec_bytes decrypt(pd_bytes_view encrypted_data);
+        static sec_bytes decrypt(pd_bytes_view encrypted_data, bytes_view entropy_key);
     };
 }
 
