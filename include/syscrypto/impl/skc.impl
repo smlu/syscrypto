@@ -2,7 +2,7 @@
 #include "../platform.h"
 
 #ifdef SC_PLATFORM_OS_WINDOWS
-#   include "windows/win_skc.h"
+#   include "windows/skc_win.h"
 #else
 #   error "Secret key cryptography is not defined for target platform!"
 #endif
