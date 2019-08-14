@@ -35,6 +35,7 @@ namespace syscrypto {
          * @param Optional encryption scope.
          * @return Encrypted data.
          */
+        [[nodiscard]]
         static pd_bytes encrypt(bytes_view data, encyption_scope s = local_user);
 
         /**
@@ -47,6 +48,7 @@ namespace syscrypto {
          * @param Optional encryption scope.
          * @return Encrypted data.
          */
+        [[nodiscard]]
         static pd_bytes encrypt(bytes_view data, std::string_view description, encyption_scope s = local_user);
 
         /**
@@ -58,6 +60,7 @@ namespace syscrypto {
          * @param Optional encryption scope.
          * @return Encrypted data.
          */
+        [[nodiscard]]
         static pd_bytes encrypt(bytes_view data, bytes_view entropy_key, encyption_scope s = local_user);
 
         /**
@@ -71,10 +74,13 @@ namespace syscrypto {
          * @param Optional encryption scope.
          * @return Encrypted data.
          */
+        [[nodiscard]]
         static pd_bytes encrypt(bytes_view data, bytes_view entropy_key, std::string_view description, encyption_scope s = local_user);
 
-
+        [[nodiscard]]
         static sec_bytes decrypt(pd_bytes_view encrypted_data);
+
+        [[nodiscard]]
         static sec_bytes decrypt(pd_bytes_view encrypted_data, bytes_view entropy_key);
     };
 }
