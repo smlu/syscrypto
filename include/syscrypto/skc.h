@@ -21,7 +21,7 @@ namespace syscrypto {
             local_machine = 2  //! encrypted data is associated with local machine. Any local user can decrypt it. 
         };
 
-        struct error : std::system_error {
+        struct error final : std::system_error {
             error(int ec);
             error(int ec, const std::string& what);
             error(int ec, const char* what);
