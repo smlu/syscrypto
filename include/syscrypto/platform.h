@@ -21,10 +21,10 @@ namespace syscrypto {
 
 #ifdef __APPLE__
 #   ifdef TARGET_OS_MAC
-#   define SC_PLATFORM_OS_MACOS 1
+#       define SC_PLATFORM_OS_MACOS 1
         inline constexpr auto platform_os = os::macos;
 #   else
-#   define SC_PLATFORM_OS_IOS 1
+#       define SC_PLATFORM_OS_IOS 1
         inline constexpr auto platform_os = os::ios;
 #   endif
 #elif defined(_WIN32)
@@ -35,7 +35,7 @@ namespace syscrypto {
 #       define SC_PLATFORM_OS_ANDROID 1
         inline constexpr auto platform_os = os::android;
 #   else
-#   define SC_PLATFORM_OS_LINUX 1
+#       define SC_PLATFORM_OS_LINUX 1
         inline constexpr auto platform_os = os::linux;
 #   endif
 #else

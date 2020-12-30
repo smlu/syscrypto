@@ -1,6 +1,7 @@
 ﻿#include <syscrypto/syscrypto.h>
 #include <syscrypto/bytes.h>
 #include <syscrypto/bytes_span.h>
+#include <syscrypto/mem.h>
 #include <syscrypto/platform.h>
 #include <syscrypto/sec_allocator.h>
 #include <syscrypto/skc.h>
@@ -17,9 +18,13 @@
 int main()
 {
     syscrypto::sec_bytes sec_bytes{ std::byte(0x22), std::byte(0x41), std::byte(0x41) };
-    auto pd_cdata = syscrypto::pde::encrypt(sec_bytes);
+    auto pd_cdata  = syscrypto::pde::encrypt(sec_bytes);
     auto sec_ddata = syscrypto::pde::decrypt(pd_cdata);
     assert(sec_ddata == sec_bytes);
+
+
+    syscrypto::mem_lock(sec_bytes.data(), sec_bytes.size());
+    syscrypto::mem_unlock(sec_bytes.data(), sec_bytes.size());
 
     /*std::array bytes2{ std::byte(0x22), std::byte(0x41), std::byte(0x42) };
     syscrypto::bytes_span bytes_span(sec_bytes);

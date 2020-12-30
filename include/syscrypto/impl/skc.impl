@@ -42,5 +42,4 @@ namespace syscrypto {
     {
         return decrypt(encrypted_data, bytes_view());
     }
-
 }

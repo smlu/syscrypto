@@ -1,0 +1,9 @@
+#pragma once
+#include "../platform.h"
+
+#ifdef SC_PLATFORM_OS_WINDOWS
+#   include "windows/mem_win.h"
+#else
+#   include "unix/mem_unix.h"
+#endif
+

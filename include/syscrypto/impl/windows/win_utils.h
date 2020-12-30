@@ -12,7 +12,7 @@ namespace syscrypto::windows {
 
     constexpr DWORD to_dword(std::size_t n)
     {
-        if (n > static_cast<std::size_t>(std::numeric_limits<DWORD>::max())) {
+        if (n > static_cast<std::size_t>((std::numeric_limits<DWORD>::max)())) {
             throw std::overflow_error("to_dword failed, 'n' is too big");
         }
         return static_cast<DWORD>(n);
@@ -31,7 +31,7 @@ namespace syscrypto::windows {
 
     std::wstring str2wstr(const std::string_view str)
     {
-        if (str.length() > static_cast<std::size_t>(std::numeric_limits<int>::max()))
+        if (str.length() > static_cast<std::size_t>((std::numeric_limits<int>::max)()))
         {
             throw std::overflow_error(
                 "str2wstr failed: str length is too big to convert to wstring"
@@ -61,7 +61,7 @@ namespace syscrypto::windows {
     }
 
     //! Get all hwnds associated with current thread.
-    std::vector<HWND> WINAPI  get_current_thread_hwnds()
+    std::vector<HWND> WINAPI get_current_thread_hwnds()
     {
         const auto dwCurThreadID = GetCurrentThreadId();
         std::vector<HWND> vhWnds;
